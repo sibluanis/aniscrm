@@ -4,12 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANIS CRM</title>
+    
+    <!-- PWA Setup -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d1017">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
     <style>
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
             overflow: hidden;
+            background-color: #0d1017;
         }
         iframe {
             width: 100%;
@@ -19,7 +26,22 @@
     </style>
 </head>
 <body>
-    <!-- নিচের লিংকের জায়গায় আপনার Apps Script-এর Web App URL টি বসিয়ে দিন -->
+    
     <iframe src="https://script.google.com/macros/s/AKfycbwdQk70QEoTCbLUT0Edzcm_hkkle7RMpKVrii4QeJsVkbaK3P6IrI_BurZu4GNCDQWLPQ/exec"></iframe>
+
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
